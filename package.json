@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/chrigiaccardi/AppTongue#readme",
   "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "babel-loader": "^10.0.0",
     "css-loader": "^7.1.2",
     "dotenv-webpack": "^8.1.1",
     "html-webpack-plugin": "^5.6.5",
