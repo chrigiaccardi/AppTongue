@@ -1,4 +1,6 @@
-  let listaIdNews = [];
+import"../scss/style.scss"
+
+let listaIdNews = [];
   let indiceCorrente = 0;
   const newsPerPagina = 10;
   const API_BASE = "https://hacker-news.firebaseio.com/v0";
