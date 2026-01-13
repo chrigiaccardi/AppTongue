@@ -45,7 +45,7 @@ const bottoneLoadMore = creaElemento("button", {
   classi: ["bottoneLoadMore", "btn-primary"],
   padre: contenitoreApp,
 });
-
+const navbar = creaElemento("")
 bottoneLoadMore.addEventListener("click", caricaNewsSuccessive);
 
 // Funzione Caricamento Lista News

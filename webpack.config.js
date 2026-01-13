@@ -1,6 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+
 
 module.exports = {
   entry: "./js/script.js",
@@ -13,28 +15,27 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          "sass-loader"
-        ]
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
         test: /\.js$/,
         type: "javascript/auto",
         resolve: {
-          fullySpecified: false
+          fullySpecified: false,
         },
-      }
-    ]
+      },
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "style.css"
+      filename: "style.css",
     }),
     new HtmlWebpackPlugin({
-      template: "./index.html"
-    })
+      template: "./index.html",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: "img", to: "img" }],
+    }),
   ],
-  mode: "production"
+  mode: "production",
 };
