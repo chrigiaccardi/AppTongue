@@ -77,7 +77,7 @@ async function dettagliNews(id) {
     const nuovoItem = creaElemento("div", {
       classi: ["nuovo-item",],
       padre: contenitoreNews,
-      innerHTML: `<h2><a class="link" href="${news.url || "#"}" target="_blank">${
+      innerHTML: `<h2><a class="text-decoration-none" href="${news.url || "#"}" target="_blank">${
       news.title
     }</a></h2>
         <p class="data">Pubblicato il: ${dateString}</p>`,
@@ -86,7 +86,6 @@ async function dettagliNews(id) {
 }
 
 // Creazione DOM
-
 const hero = creaElemento("hero", {
   classi: ["hero", "text-center"],
   padre: document.body,
@@ -100,10 +99,6 @@ const contenitoreNews = creaElemento("div", {
   padre: contenitoreApp,
 });
 
-const footer = creaElemento("footer", {
-  classi: ["footer"],
-  padre: document.body,
-})
 const titolo = creaElemento("h1", {
   text: "News in tempo Reale",
   classi: ["titolo"],
@@ -116,10 +111,25 @@ const titolo2 = creaElemento("h3", {
 });
 const bottoneLoadMore = creaElemento("button", {
   text: "Carica più News",
-  classi: ["bottoneLoadMore", "btn-primary"],
-  padre: contenitoreNews,
+  classi: ["btn", "btn-primary", "d-block", "mx-auto"],
+  padre: document.body,
+  eventi:{"click": caricaNewsSuccessive}
+});
+const footer = creaElemento("footer", {
+  classi: ["footer", "text-center"],
+  padre: document.body,
+  innerHTML: `<p class="mb-0">&copy; 2026 Tongue | Creato con Hacker News API</p>
+    <p class="mb-0">Sviluppato da Giaccardi Christian</p>
+    <a href="https://github.com/chrigiaccardi" target="_blank" rel="noopener noreferrer" class="mx-2">
+      <img class="logo-footer" src="img/github-mark.png" alt="Logo GitHub">
+    </a>
+    <a href="https://www.linkedin.com/in/christian-giaccardi-753085180/" target="_blank" rel="noopener noreferrer" class="mx-2">
+      <img class="logo-footer" src="./img/LinkedIn-Logo.svg" alt="Logo LinkedIn">
+    </a>`,
+  attributi: {
+    id: "contatti"
+  }
 });
 
-
-bottoneLoadMore.addEventListener("click", caricaNewsSuccessive);
 listaNews();
+

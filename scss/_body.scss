@@ -1,28 +1,36 @@
 @use "variabili" as *;
 
-.navbar{
-   .logo {
+body {
+  font-family: $font-page;
+  background-color: $bg-color;
+}
+.logo-footer {
+  width: 50px;
+  height: 50px;
+}
+
+.navbar {
+  .logo {
     width: 150px;
     height: auto;
     max-width: 100%;
+  }
 }
-}
-.nuovo-item{
-background: linear-gradient(145deg, #ffffff, #f0f0f0);
+.nuovo-item {
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
   border-radius: 16px;
   border: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
+  padding: $margine;
+  margin-bottom: $margine;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 
-      0 16px 48px rgba(0, 0, 0, 0.18),
-      0 4px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.12);
   }
 }
-  .link{
-    text-decoration: none;
-  }
- 
+
+.btn, .titolo{
+  margin: $margine;
+}
+
