@@ -1,4 +1,5 @@
 import "../scss/style.scss";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 let listaIdNews = [];
 let indiceCorrente = 0;
@@ -17,6 +18,9 @@ function creaElemento(tag, options = {}) {
   if (options.classi) {
     element.classList.add(...options.classi);
   }
+  if (options.innerHTML) {
+    element.innerHTML = options.innerHTML;
+  }
   if (options.attributi) {
     for (const [chiave, valore] of Object.entries(options.attributi)) {
       element.setAttribute(chiave, valore);
@@ -29,25 +33,6 @@ function creaElemento(tag, options = {}) {
   }
   return element;
 }
-
-const contenitoreApp = document.querySelector(".contenitoreApp");
-const contenitoreNews = creaElemento("div", {
-  classi: ["contenitoreNews"],
-  padre: contenitoreApp,
-});
-const titolo = creaElemento("h1", {
-  text: "News in tempo Reale",
-  classi: ["titolo"],
-  padre: contenitoreApp,
-});
-const bottoneLoadMore = creaElemento("button", {
-  text: "Carica più News",
-  classi: ["bottoneLoadMore", "btn-primary"],
-  padre: contenitoreApp,
-});
-const navbar = creaElemento("")
-bottoneLoadMore.addEventListener("click", caricaNewsSuccessive);
-
 // Funzione Caricamento Lista News
 
 async function caricaNewsSuccessive() {
@@ -90,14 +75,51 @@ async function dettagliNews(id) {
     const data = new Date(news.time * 1000);
     const dateString = data.toLocaleString("it-IT");
     const nuovoItem = creaElemento("div", {
-      classi: ["nuovo-item"],
+      classi: ["nuovo-item",],
       padre: contenitoreNews,
-    });
-    nuovoItem.innerHTML = `<h2><a href="${news.url || "#"}" target="_blank">${
+      innerHTML: `<h2><a class="link" href="${news.url || "#"}" target="_blank">${
       news.title
     }</a></h2>
-        <p class="data">Pubblicato il: ${dateString}</p>`;
+        <p class="data">Pubblicato il: ${dateString}</p>`,
+    });
   } catch (error) {}
 }
 
+// Creazione DOM
+
+const hero = creaElemento("hero", {
+  classi: ["hero", "text-center"],
+  padre: document.body,
+})
+const contenitoreApp = creaElemento("main", {
+  classi: ["container","contenitoreApp"],
+  padre: document.body,
+})
+const contenitoreNews = creaElemento("div", {
+  classi: ["contenitoreNews"],
+  padre: contenitoreApp,
+});
+
+const footer = creaElemento("footer", {
+  classi: ["footer"],
+  padre: document.body,
+})
+const titolo = creaElemento("h1", {
+  text: "News in tempo Reale",
+  classi: ["titolo"],
+  padre: hero,
+});
+const titolo2 = creaElemento("h3", {
+  text: "Le ultime notizie dal mondo, aggiornate in tempo reale",
+  classi: ["titolo"],
+  padre: hero,
+});
+const bottoneLoadMore = creaElemento("button", {
+  text: "Carica più News",
+  classi: ["bottoneLoadMore", "btn-primary"],
+  padre: contenitoreNews,
+});
+
+
+bottoneLoadMore.addEventListener("click", caricaNewsSuccessive);
 listaNews();
