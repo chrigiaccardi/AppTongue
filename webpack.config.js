@@ -38,6 +38,9 @@ module.exports = {
     ],
   },
   plugins: [
+    new Dotenv({
+      systemvars: true,
+    }),
     new MiniCssExtractPlugin({
       filename: "style.css",
     }),
@@ -47,9 +50,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{ from: "img", to: "img" }],
     }),
-    new Dotenv({
-      systemvars: true,
-    }),
   ],
   mode: "production",
+  devtool: "source-map",
 };
