@@ -4,7 +4,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 let listaIdNews = [];
 let indiceCorrente = 0;
 const newsPerPagina = 10;
-const API_BASE = "https://hacker-news.firebaseio.com/v0";
+const API_BASE = process.env.API_BASE;
+console.log(process.env.API_BASE)
 
 // Funzione creaElemento
 function creaElemento(tag, options = {}) {
@@ -56,7 +57,6 @@ async function listaNews() {
       throw new Error("Fetch Lista news fallito");
     }
     listaIdNews = await response.json();
-    console.log(listaIdNews);
     caricaNewsSuccessive();
   } catch (error) {
     console.error("Errore Caricamento News", error);

@@ -1,8 +1,9 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry: "./js/script.js",
@@ -30,7 +31,7 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: [["@babel/preset-env", { targets: "defaults" }]]
+            presets: [["@babel/preset-env", { targets: "defaults" }]],
           },
         },
       },
@@ -45,6 +46,9 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [{ from: "img", to: "img" }],
+    }),
+    new Dotenv({
+      systemvars: true,
     }),
   ],
   mode: "production",
