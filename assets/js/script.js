@@ -56,7 +56,6 @@ async function caricaNewsSuccessive() {
 async function listaNews() {
   try {
     const response = await fetch(`${API_BASE}/newstories.json`);
-    console.log(response.url);
     if (!response.ok) {
       throw new Error("Fetch Lista news fallito");
     }
