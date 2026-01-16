@@ -1,11 +1,14 @@
+// Import SCSS e Bootstrap
 import "../scss/style.scss";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
+// Inizializzazione
 let listaIdNews = [];
 let indiceCorrente = 0;
 const newsPerPagina = 10;
+
+// API tramite Environment Variables
 const API_BASE = process.env.API_BASE;
-console.log(process.env.API_BASE)
 
 // Funzione creaElemento
 function creaElemento(tag, options = {}) {
@@ -34,7 +37,7 @@ function creaElemento(tag, options = {}) {
   }
   return element;
 }
-// Funzione Caricamento Lista News
+// Funzioni Caricamento News API
 
 async function caricaNewsSuccessive() {
   const idNewsSuccessive = listaIdNews.slice(
