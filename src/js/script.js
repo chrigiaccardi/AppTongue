@@ -128,10 +128,10 @@ const footer = creaElemento("footer", {
   innerHTML: `<p class="mb-0">&copy; 2026 Tongue | Creato con Hacker News API</p>
     <p class="mb-0">Sviluppato da Giaccardi Christian</p>
     <a href="https://github.com/chrigiaccardi" target="_blank" rel="noopener noreferrer" class="mx-2">
-      <img class="logo-footer" src="./assets/img/github-mark.png" alt="Logo GitHub">
+      <img class="logo-footer" src="./src/img/github-mark.png" alt="Logo GitHub">
     </a>
     <a href="https://www.linkedin.com/in/christian-giaccardi-753085180/" target="_blank" rel="noopener noreferrer" class="mx-2">
-      <img class="logo-footer" src="./assets/img/LinkedIn-Logo.svg" alt="Logo LinkedIn">
+      <img class="logo-footer" src="./src/img/LinkedIn-Logo.svg" alt="Logo LinkedIn">
     </a>`,
   attributi: {
     id: "contatti",
