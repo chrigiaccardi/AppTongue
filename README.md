@@ -27,13 +27,15 @@ Creazione di un App per la visualizzazione di notizie tramite API esterne.
 ### 📸 ScreenShot
 
 1. Versione Desktop
+
 ![Anteprima Versione Desktop **Tongue**](./img/Tongue_desktop.png)
 
 2. Versione Mobile
+
 ![Anteprima Versione Mobile **Tongue**](./img/Tongue_mobile.png)
 
 
-### 🛠️ Tecnologie Usate
+## 🛠️ Tecnologie Usate
 
 * HTML5
 * CSS / SCSS
@@ -42,7 +44,7 @@ Creazione di un App per la visualizzazione di notizie tramite API esterne.
 * Webpack 
 * API di Hacker News (per il caricamento degli articoli)
 
-### Contatti
+## Contatti
 
 Christian Giaccardi - 📧 [chrigiaccardi@gmail.com](mailto:chrigiaccardi@gmail.com) <br>
 GitHub - [chrigiaccardi](https://github.com/chrigiaccardi) <br>
