@@ -56,7 +56,7 @@ async function caricaNewsSuccessive() {
 async function listaNews() {
   try {
     const response = await fetch(`${API_BASE}/newstories.json`);
-    console.log(response.url)
+    console.log(response.url);
     if (!response.ok) {
       throw new Error("Fetch Lista news fallito");
     }
@@ -75,15 +75,14 @@ async function dettagliNews(id) {
     }
     const news = await response.json();
     if (!news) return;
-    console.log(news);
     const data = new Date(news.time * 1000);
     const dateString = data.toLocaleString("it-IT");
     const nuovoItem = creaElemento("div", {
-      classi: ["nuovo-item",],
+      classi: ["nuovo-item"],
       padre: contenitoreNews,
-      innerHTML: `<h2><a class="text-decoration-none" href="${news.url || "#"}" target="_blank">${
-      news.title
-    }</a></h2>
+      innerHTML: `<h2><a class="text-decoration-none" href="${
+        news.url || "#"
+      }" target="_blank">${news.title}</a></h2>
         <p class="data">Pubblicato il: ${dateString}</p>`,
     });
   } catch (error) {}
@@ -121,7 +120,7 @@ const bottoneLoadMore = creaElemento("button", {
   text: "Carica più News",
   classi: ["btn", "btn-primary", "d-block", "mx-auto"],
   padre: document.body,
-  eventi:{"click": caricaNewsSuccessive}
+  eventi: { click: caricaNewsSuccessive },
 });
 
 const footer = creaElemento("footer", {
@@ -130,16 +129,15 @@ const footer = creaElemento("footer", {
   innerHTML: `<p class="mb-0">&copy; 2026 Tongue | Creato con Hacker News API</p>
     <p class="mb-0">Sviluppato da Giaccardi Christian</p>
     <a href="https://github.com/chrigiaccardi" target="_blank" rel="noopener noreferrer" class="mx-2">
-      <img class="logo-footer" src="img/github-mark.png" alt="Logo GitHub">
+      <img class="logo-footer" src="./assets/img/github-mark.png" alt="Logo GitHub">
     </a>
     <a href="https://www.linkedin.com/in/christian-giaccardi-753085180/" target="_blank" rel="noopener noreferrer" class="mx-2">
-      <img class="logo-footer" src="./img/LinkedIn-Logo.svg" alt="Logo LinkedIn">
+      <img class="logo-footer" src="./assets/img/LinkedIn-Logo.svg" alt="Logo LinkedIn">
     </a>`,
   attributi: {
-    id: "contatti"
-  }
+    id: "contatti",
+  },
 });
 
 // Richiamo Funzione API
 listaNews();
-

@@ -28,11 +28,11 @@ Creazione di un App per la visualizzazione di notizie tramite API esterne.
 
 1. Versione Desktop
 
-![Anteprima Versione Desktop **Tongue**](./img/Tongue_desktop.png)
+![Anteprima Versione Desktop **Tongue**](./assets/img/Tongue_desktop.png)
 
 2. Versione Mobile
 
-![Anteprima Versione Mobile **Tongue**](./img/Tongue_mobile.png)
+![Anteprima Versione Mobile **Tongue**](./assets/img/Tongue_mobile.png)
 
 
 ## 🛠️ Tecnologie Usate

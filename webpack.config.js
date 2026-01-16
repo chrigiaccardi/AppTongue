@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 
 module.exports = {
-  entry: "./js/script.js",
+  entry: "./assets/js/script.js",
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
@@ -48,7 +48,7 @@ module.exports = {
       template: "./index.html",
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: "img", to: "img" }],
+      patterns: [{ from: "assets/img", to: "img" }],
     }),
   ],
   mode: "production",
