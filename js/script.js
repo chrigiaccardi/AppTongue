@@ -37,8 +37,8 @@ function creaElemento(tag, options = {}) {
   }
   return element;
 }
-// Funzioni Caricamento News API
 
+// Funzioni Caricamento News API
 async function caricaNewsSuccessive() {
   const idNewsSuccessive = listaIdNews.slice(
     indiceCorrente,
@@ -93,11 +93,13 @@ async function dettagliNews(id) {
 const hero = creaElemento("hero", {
   classi: ["hero", "text-center"],
   padre: document.body,
-})
+});
+
 const contenitoreApp = creaElemento("main", {
-  classi: ["container","contenitoreApp"],
+  classi: ["container", "contenitoreApp"],
   padre: document.body,
-})
+});
+
 const contenitoreNews = creaElemento("div", {
   classi: ["contenitoreNews"],
   padre: contenitoreApp,
@@ -108,17 +110,20 @@ const titolo = creaElemento("h1", {
   classi: ["titolo"],
   padre: hero,
 });
+
 const titolo2 = creaElemento("h3", {
   text: "Le ultime notizie dal mondo, aggiornate in tempo reale",
   classi: ["titolo"],
   padre: hero,
 });
+
 const bottoneLoadMore = creaElemento("button", {
   text: "Carica più News",
   classi: ["btn", "btn-primary", "d-block", "mx-auto"],
   padre: document.body,
   eventi:{"click": caricaNewsSuccessive}
 });
+
 const footer = creaElemento("footer", {
   classi: ["footer", "text-center"],
   padre: document.body,
@@ -135,5 +140,6 @@ const footer = creaElemento("footer", {
   }
 });
 
+// Richiamo Funzione API
 listaNews();
 
