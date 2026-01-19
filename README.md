@@ -18,7 +18,7 @@ ad informazione offrendo pillole di attualità immediate e accessibili provenien
 
 ## 🔗 Vai al Sito
 
-[Clicca qui per visitare **Tongue**]() <br>
+[Clicca qui per visitare **Tongue**](https://tonguenewsjs.netlify.app/) <br>
 Progetto caricato online con Netlify. <br>
 Esame finale della sezione JS Advance di Start2Impact. <br>
 Creazione di un App per la visualizzazione di notizie tramite API esterne.
@@ -28,11 +28,11 @@ Creazione di un App per la visualizzazione di notizie tramite API esterne.
 
 1. Versione Desktop
 
-![Anteprima Versione Desktop **Tongue**](./assets/img/Tongue_desktop.png)
+![Anteprima Versione Desktop **Tongue**](./img/Tongue_desktop.png)
 
 2. Versione Mobile
 
-![Anteprima Versione Mobile **Tongue**](./assets/img/Tongue_mobile.png)
+![Anteprima Versione Mobile **Tongue**](./img/Tongue_mobile.png)
 
 
 ## 🛠️ Tecnologie Usate
