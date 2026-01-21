@@ -2,17 +2,19 @@
 import "../scss/style.scss";
 
 // Inizializzazione
-let listaIdNews = [];
-let indiceCorrente = 0;
-const NEWS_PER_PAGINA = 10;
-const MOLTIPLICATORE_SECONDI = 1000;
+const CONFIG = {
+  NEWS_PER_PAGINA: 10,
+  MOLTIPLICATORE_MS: 1000,
+  API_BASE: process.env.API_BASE
+};
+let stato = {
+  listaIdNews :[],
+  indiceCorrente: 0,
+};
 
-
-const CONTENITORE_NEWS = document.querySelector(".contenitoreNews")
-const BOTTONE_LOAD_MORE = document.querySelector(".btn")
-
-// API tramite Environment Variables
-const API_BASE = process.env.API_BASE;
+// Riferimenti DOM
+const CONTENITORE_NEWS = document.querySelector(".contenitoreNews");
+const BOTTONE_LOAD_MORE = document.querySelector(".btn");
 
 // Funzione creaElemento
 function creaElemento(tag, options = {}) {
@@ -40,37 +42,39 @@ function creaElemento(tag, options = {}) {
     }
   }
   return element;
-}
+};
 
 // Funzioni Caricamento News API
 async function caricaNewsSuccessive() {
-  const ID_NEWS_SUCCESSIVE = listaIdNews.slice(
-    indiceCorrente, indiceCorrente + NEWS_PER_PAGINA
+  const ID_NEWS_SUCCESSIVE = stato.listaIdNews.slice(
+    stato.indiceCorrente, stato.indiceCorrente + CONFIG.NEWS_PER_PAGINA
   );
   // Await promise.all garantisce che le chiamate siano fatte tutte in parallelo
   await Promise.all(ID_NEWS_SUCCESSIVE.map(id => dettagliNews(id)))
-
-  indiceCorrente += NEWS_PER_PAGINA;
-  if (indiceCorrente >= listaIdNews.length) {
+  // stato.indiceCorrente si aggiorna per tenere traccia di quali news visualizzare
+  stato.indiceCorrente += CONFIG.NEWS_PER_PAGINA;
+  if (stato.indiceCorrente >= stato.listaIdNews.length) {
     BOTTONE_LOAD_MORE.remove();
   }
 }
 
 async function listaNews() {
   try {
-    const RESPONSE = await fetch(`${API_BASE}/newstories.json`);
+    const RESPONSE = await fetch(`${CONFIG.API_BASE}/newstories.json`);
     if (!RESPONSE.ok) {
       throw new Error("Fetch Lista news fallito");
     }
-    listaIdNews = await RESPONSE.json();
+    stato.listaIdNews = await RESPONSE.json();
     caricaNewsSuccessive();
   } catch (error) {
     console.error("Errore Caricamento News", error);
+    // Viene creato un div per segnalare all'utente che c'è un problema nel caricamento delle news
     const ERRORE_LISTA_NEWS = creaElemento("div", {
       text: "⚠️ Si è verificato un errore nel caricamento della lista delle News! ⚠️",
       classi: ["nuovo-item", "text-center"],
       padre: CONTENITORE_NEWS
     });
+    // Visto che c'è errore il bottone viene eliminato
     BOTTONE_LOAD_MORE.remove();
 
   }
@@ -78,11 +82,12 @@ async function listaNews() {
 
 async function dettagliNews(id) {
   try {
-    const RESPONSE = await fetch(`${API_BASE}/item/${id}.json`);
+    const RESPONSE = await fetch(`${CONFIG.API_BASE}/item/${id}.json`);
     if (!RESPONSE.ok) {
       throw new Error("Fetch dettagli news Fallito");
     }
     const NEWS = await RESPONSE.json();
+    // Se una News è difettosa o mancano dei dati non vengono visualizzate nell'elenco
     if (!NEWS || typeof NEWS !== "object") {
       console.warn("News Difettosa: " + id)
      return 
@@ -91,13 +96,12 @@ async function dettagliNews(id) {
       console.warn("Dati news incompleti: " + id + NEWS.title);
       return
     }
-    const DATA = new Date(NEWS.time * MOLTIPLICATORE_SECONDI);
+    const DATA = new Date(NEWS.time * CONFIG.MOLTIPLICATORE_MS);
     const STRINGA_DATA = DATA.toLocaleString("it-IT");
     const NUOVO_ITEM = creaElemento("div", {
       classi: ["nuovo-item"],
       padre: CONTENITORE_NEWS,
-      innerHTML: `<h2><a class="text-decoration-none" href="${NEWS.url || "#"
-        }" target="_blank">${NEWS.title}</a></h2>
+      innerHTML: `<h2><a class="text-decoration-none" href="${NEWS.url}" target="_blank">${NEWS.title}</a></h2>
         <p class="data">Pubblicato il: ${STRINGA_DATA}</p>`,
     });
   } catch (error) {
@@ -111,9 +115,8 @@ async function dettagliNews(id) {
     return
   };
 }
-
+// Event Listener sul click che avvia la funzione caricaNewsSuccessive
 BOTTONE_LOAD_MORE.addEventListener("click", caricaNewsSuccessive)
-
 
 // Richiamo Funzione API
 listaNews();
