@@ -1,6 +1,6 @@
 @use "variabili" as *;
 
-body {
+body{
   font-family: $font-page;
   background-color: $bg-color;
 }
@@ -17,7 +17,7 @@ body {
   }
 }
 .nuovo-item {
-  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  background: $bg-color-item;
   border-radius: 16px;
   border: 1px solid rgba(0, 0, 0, 0.05);
   padding: $margine;
@@ -32,4 +32,9 @@ body {
 
 .btn, .titolo{
   margin: $margine;
+}
+
+.footer{
+  background: $bg-color-item;
+  padding: $margine;
 }
