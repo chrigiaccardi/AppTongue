@@ -44,6 +44,21 @@ function creaElemento(tag, options = {}) {
   return element;
 };
 
+
+// function skeletons() {
+//   const SKELETON_WRAPPER = creaElemento("div", { padre: CONTENITORE_NEWS });
+//   for (let i = 0; i < CONFIG.NEWS_PER_PAGINA; i++) {
+//     creaElemento("div", {
+//       classi: ["nuovo-item"],
+//       padre: SKELETON_WRAPPER,
+//       innerHTML: `<h2 class="titoloSkeleton"></h2>
+//         <p class="paragrafoSkeleton"></p>`,
+//     })
+//   }
+// };
+// skeletons();
+
+
 // Funzioni Caricamento News API
 async function caricaNewsSuccessive() {
   const ID_NEWS_SUCCESSIVE = stato.listaIdNews.slice(
@@ -57,6 +72,9 @@ async function caricaNewsSuccessive() {
     BOTTONE_LOAD_MORE.remove();
   }
 }
+
+
+
 
 async function listaNews() {
   try {
@@ -104,6 +122,7 @@ async function dettagliNews(id) {
       innerHTML: `<h2><a class="text-decoration-none" href="${NEWS.url}" target="_blank">${NEWS.title}</a></h2>
         <p class="data">Pubblicato il: ${STRINGA_DATA}</p>`,
     });
+    
   } catch (error) {
     console.error("Errore Caricamento Dettagli News" + error);
     const ERRORE_DETTAGLI_NEWS = creaElemento("div", {
