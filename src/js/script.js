@@ -7,6 +7,7 @@ const CONFIG = {
   MOLTIPLICATORE_MS: 1000,
   API_BASE: process.env.API_BASE
 };
+
 let stato = {
   listaIdNews :[],
   indiceCorrente: 0,
@@ -44,19 +45,20 @@ function creaElemento(tag, options = {}) {
   return element;
 };
 
+function skeletons() {
+    const SK_WRAPPER = creaElemento("div", { padre: CONTENITORE_NEWS });
+  for (let i = 0; i < CONFIG.NEWS_PER_PAGINA; i++) {
+    creaElemento("div", {
+      classi: ["nuovo-item"],
+      padre: SK_WRAPPER,
+      innerHTML: `<h2 class="titoloSkeleton"></h2>
+        <p class="paragrafoSkeleton"></p>`,
+    })
+  };
+  return SK_WRAPPER;
+};
+const SKW = skeletons();  
 
-// function skeletons() {
-//   const SKELETON_WRAPPER = creaElemento("div", { padre: CONTENITORE_NEWS });
-//   for (let i = 0; i < CONFIG.NEWS_PER_PAGINA; i++) {
-//     creaElemento("div", {
-//       classi: ["nuovo-item"],
-//       padre: SKELETON_WRAPPER,
-//       innerHTML: `<h2 class="titoloSkeleton"></h2>
-//         <p class="paragrafoSkeleton"></p>`,
-//     })
-//   }
-// };
-// skeletons();
 
 
 // Funzioni Caricamento News API
@@ -114,6 +116,7 @@ async function dettagliNews(id) {
       console.warn("Dati news incompleti: " + id + NEWS.title);
       return
     }
+    SKW.remove();
     const DATA = new Date(NEWS.time * CONFIG.MOLTIPLICATORE_MS);
     const STRINGA_DATA = DATA.toLocaleString("it-IT");
     const NUOVO_ITEM = creaElemento("div", {
@@ -135,7 +138,11 @@ async function dettagliNews(id) {
   };
 }
 // Event Listener sul click che avvia la funzione caricaNewsSuccessive
-BOTTONE_LOAD_MORE.addEventListener("click", caricaNewsSuccessive)
+BOTTONE_LOAD_MORE.addEventListener("click", () => {
+  const SKW = skeletons();
+  caricaNewsSuccessive();
+  SKW.remove();
+})
 
 // Richiamo Funzione API
 listaNews();
