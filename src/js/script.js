@@ -88,6 +88,7 @@ async function listaNews() {
     caricaNewsSuccessive();
   } catch (error) {
     console.error("Errore Caricamento News", error);
+    SKW.remove();
     // Viene creato un div per segnalare all'utente che c'è un problema nel caricamento delle news
     const ERRORE_LISTA_NEWS = creaElemento("div", {
       text: "⚠️ Si è verificato un errore nel caricamento della lista delle News! ⚠️",
@@ -128,6 +129,7 @@ async function dettagliNews(id) {
     
   } catch (error) {
     console.error("Errore Caricamento Dettagli News" + error);
+      SKW.remove();
     const ERRORE_DETTAGLI_NEWS = creaElemento("div", {
       text: "⚠️ Si è verificato un errore nel caricamento dei dettagli delle News!! ⚠️",
       classi: ["nuovo-item", "text-center"],
@@ -138,9 +140,9 @@ async function dettagliNews(id) {
   };
 }
 // Event Listener sul click che avvia la funzione caricaNewsSuccessive
-BOTTONE_LOAD_MORE.addEventListener("click", () => {
+BOTTONE_LOAD_MORE.addEventListener("click", async () => {
   const SKW = skeletons();
-  caricaNewsSuccessive();
+  await caricaNewsSuccessive();
   SKW.remove();
 })
 
